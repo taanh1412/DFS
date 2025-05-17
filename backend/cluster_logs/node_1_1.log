@@ -1,0 +1,678 @@
+2025-05-16 17:15:47,130 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:15:47,132 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:16:04,266 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=False
+2025-05-16 17:16:04,274 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:16:04,274 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:16:04,278 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:16:04,279 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:16:04,278 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:16:04,279 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:17:11,714 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:17:11,717 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:17:13,735 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=False
+2025-05-16 17:17:44,233 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:17:44,234 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:17:58,351 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=False
+2025-05-16 17:17:58,359 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:17:58,359 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:17:58,364 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:17:58,364 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:17:58,364 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:17:58,364 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:18:08,381 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:08,381 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:18,382 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:18,382 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:28,402 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:28,402 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:38,422 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:38,422 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:48,422 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:48,422 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:58,443 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:18:58,443 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:08,451 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:08,451 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:18,450 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:18,450 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:28,466 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:28,466 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:38,470 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:38,470 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:48,459 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:48,459 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:58,479 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:19:58,479 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:08,499 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:08,499 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:18,498 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:18,498 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:28,514 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:28,514 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:38,518 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:38,518 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:48,517 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:48,517 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:58,537 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:20:58,537 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:08,557 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:08,557 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:18,556 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:18,556 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:28,577 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:28,577 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:38,598 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:38,598 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:48,595 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:48,595 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:58,606 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:21:58,606 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:22:08,625 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:22:08,625 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:22:18,617 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:22:18,617 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:22:41,489 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:22:41,490 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:23:26,874 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=False
+2025-05-16 17:23:26,886 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:23:26,886 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:23:26,891 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:23:26,891 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:23:26,891 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:23:26,891 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:23:36,912 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:23:36,912 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:23:46,933 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:23:46,933 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:23:56,933 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:23:56,933 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:06,954 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:06,954 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:16,975 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:16,975 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:26,976 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:26,976 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:36,980 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:36,980 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:47,001 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:47,001 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:56,989 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:24:56,989 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:07,010 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:07,010 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:17,010 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:17,010 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:27,018 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:27,018 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:37,039 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:37,039 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:47,039 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:47,039 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:57,061 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:25:57,061 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:07,077 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:07,077 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:17,075 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:17,075 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:27,078 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:27,078 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:37,097 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:37,097 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:47,094 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:47,094 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:57,116 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:26:57,116 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:07,134 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:07,134 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:17,123 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:17,123 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:27,143 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:27,143 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:37,153 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:37,153 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:47,145 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:27:47,145 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:28:35,258 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:28:35,259 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:28:36,271 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=False
+2025-05-16 17:29:32,832 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:29:32,833 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:29:34,850 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=False
+2025-05-16 17:29:34,858 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:29:34,858 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:29:34,864 - node_1_1 - INFO - Kafka consumer connected successfully for topic delete
+2025-05-16 17:29:34,864 - node_1_1 - INFO - Kafka consumer connected successfully for topic delete
+2025-05-16 17:29:34,865 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:29:34,865 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:29:34,865 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:29:34,865 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:29:44,886 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:29:44,886 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:29:54,887 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:29:54,887 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:04,908 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:04,908 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:14,928 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:14,928 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:24,929 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:24,929 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:34,949 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:34,949 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:44,966 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:44,966 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:54,967 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:30:54,967 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:04,975 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:04,975 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:14,985 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:14,985 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:24,986 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:24,986 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:35,008 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:35,008 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:45,030 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:45,030 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:55,030 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:31:55,030 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:05,052 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:05,052 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:15,074 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:15,074 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:25,070 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:25,070 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:35,092 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:35,092 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:45,112 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:32:45,112 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:33:17,976 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:33:17,977 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:33:21,998 - node_1_1 - INFO - Elected leader is node 0
+2025-05-16 17:33:21,999 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=False
+2025-05-16 17:33:23,544 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:33:23,544 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=False
+2025-05-16 17:33:23,553 - node_1_1 - INFO - Kafka consumer connected successfully for topic delete
+2025-05-16 17:33:23,553 - node_1_1 - INFO - Kafka consumer connected successfully for topic delete
+2025-05-16 17:33:23,554 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:33:23,554 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:33:23,554 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:33:23,554 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:33:33,558 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:33:33,558 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:33:43,581 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:33:43,581 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:33:53,582 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:33:53,582 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:03,605 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:03,605 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:13,627 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:13,627 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:23,628 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:23,628 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:33,646 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:33,646 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:43,668 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:43,668 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:53,666 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:34:53,666 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:03,689 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:03,689 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:13,695 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:13,695 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:23,693 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:23,693 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:33,715 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:33,715 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:43,723 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:35:43,723 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:36:21,563 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:36:21,564 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:36:21,565 - node_1_1 - INFO - Elected leader is node 1
+2025-05-16 17:36:21,565 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=True
+2025-05-16 17:36:39,169 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:36:39,170 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:36:39,170 - node_1_1 - INFO - Elected leader is node 1
+2025-05-16 17:36:39,170 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=True
+2025-05-16 17:36:39,177 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=True
+2025-05-16 17:36:39,177 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=True
+2025-05-16 17:36:39,182 - node_1_1 - INFO - Kafka consumer connected successfully for topic upload
+2025-05-16 17:36:39,182 - node_1_1 - INFO - Kafka consumer connected successfully for topic upload
+2025-05-16 17:36:39,183 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:36:39,183 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:36:39,183 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:36:39,183 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:36:49,169 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:36:49,169 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:36:59,189 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:36:59,189 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:09,209 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:09,209 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:13,424 - node_1_1 - INFO - Received Kafka message on topic upload: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:37:13,424 - node_1_1 - INFO - Received Kafka message on topic upload: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:37:13,424 - node_1_1 - INFO - Fetching file 1 from Supernode at path files/1
+2025-05-16 17:37:13,424 - node_1_1 - INFO - Fetching file 1 from Supernode at path files/1
+2025-05-16 17:37:13,588 - node_1_1 - INFO - Replicated file 1 to local path node_files/1
+2025-05-16 17:37:13,588 - node_1_1 - INFO - Replicated file 1 to local path node_files/1
+2025-05-16 17:37:19,210 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:19,210 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:29,234 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:29,234 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:39,240 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:39,240 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:49,240 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:49,240 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:59,262 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:37:59,262 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:09,285 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:09,285 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:19,274 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:19,274 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:29,292 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:29,292 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:39,308 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:39,308 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:49,310 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:49,310 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:59,332 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:38:59,332 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:09,354 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:09,354 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:19,341 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:19,341 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:29,345 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:29,345 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:39,368 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:39,368 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:49,369 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:49,369 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:59,391 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:39:59,391 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:09,414 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:09,414 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:19,413 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:19,413 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:29,436 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:29,436 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:39,441 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:39,441 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:49,445 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:49,445 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:59,467 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:40:59,467 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:09,489 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:09,489 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:19,491 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:19,491 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:29,496 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:29,496 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:39,518 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:39,518 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:49,503 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:49,503 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:59,525 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:41:59,525 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:09,554 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:09,554 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:19,546 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:19,546 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:29,552 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:29,552 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:39,554 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:39,554 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:49,556 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:49,556 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:59,571 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:42:59,571 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:43:34,361 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:43:34,362 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:43:34,363 - node_1_1 - INFO - Elected leader is node 1
+2025-05-16 17:43:34,363 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=True
+2025-05-16 17:44:13,947 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:44:13,947 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:44:14,961 - node_1_1 - INFO - Elected leader is node 1
+2025-05-16 17:44:14,962 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=True
+2025-05-16 17:44:14,968 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=True
+2025-05-16 17:44:14,968 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=True
+2025-05-16 17:44:14,973 - node_1_1 - INFO - Kafka consumer connected successfully for topics ['replicate', 'upload']
+2025-05-16 17:44:14,973 - node_1_1 - INFO - Kafka consumer connected successfully for topics ['replicate', 'upload']
+2025-05-16 17:44:14,973 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:14,973 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:44:14,973 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:14,973 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:44:24,966 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:24,966 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:33,393 - node_1_1 - INFO - Received Kafka message on topic upload: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:44:33,393 - node_1_1 - INFO - Received Kafka message on topic upload: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:44:33,394 - node_1_1 - INFO - Fetching file 1 from Supernode at path files/1
+2025-05-16 17:44:33,394 - node_1_1 - INFO - Fetching file 1 from Supernode at path files/1
+2025-05-16 17:44:33,531 - node_1_1 - INFO - Replicated file 1 to local path node_files/1
+2025-05-16 17:44:33,531 - node_1_1 - INFO - Replicated file 1 to local path node_files/1
+2025-05-16 17:44:33,536 - node_1_1 - INFO - Sent replication message to 'replicate' topic: file_id=1, path=files/1
+2025-05-16 17:44:33,536 - node_1_1 - INFO - Sent replication message to 'replicate' topic: file_id=1, path=files/1
+2025-05-16 17:44:33,540 - node_1_1 - INFO - Received Kafka message on topic replicate: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:44:33,540 - node_1_1 - INFO - Received Kafka message on topic replicate: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:44:33,541 - node_1_1 - INFO - File 1 already replicated, skipping fetch
+2025-05-16 17:44:33,541 - node_1_1 - INFO - File 1 already replicated, skipping fetch
+2025-05-16 17:44:34,987 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:34,987 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:44,998 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:44,998 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:54,995 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:44:54,995 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:05,015 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:05,015 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:15,035 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:15,035 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:25,030 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:25,030 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:35,050 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:35,050 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:45,070 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:45,070 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:55,069 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:45:55,069 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:05,092 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:05,092 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:15,115 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:15,115 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:25,114 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:25,114 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:35,123 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:35,123 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:45,146 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:45,146 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:55,129 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:46:55,129 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:05,152 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:05,152 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:15,175 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:15,175 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:25,174 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:25,174 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:35,197 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:35,197 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:45,220 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:47:45,220 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:48:27,892 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:48:27,892 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:48:29,907 - node_1_1 - INFO - Elected leader is node 1
+2025-05-16 17:48:29,907 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=True
+2025-05-16 17:48:37,449 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:48:37,450 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:48:37,451 - node_1_1 - INFO - Elected leader is node 1
+2025-05-16 17:48:37,451 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=True
+2025-05-16 17:48:37,463 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=True
+2025-05-16 17:48:37,463 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=True
+2025-05-16 17:48:37,467 - node_1_1 - INFO - Started HTTP server on port 5001
+2025-05-16 17:48:37,467 - node_1_1 - INFO - Started HTTP server on port 5001
+2025-05-16 17:48:37,477 - node_1_1 - INFO - Kafka consumer connected successfully for topics ['replicate', 'upload']
+2025-05-16 17:48:37,477 - node_1_1 - INFO - Kafka consumer connected successfully for topics ['replicate', 'upload']
+2025-05-16 17:48:37,478 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:48:37,478 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:48:37,478 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:48:37,478 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:48:47,473 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:48:47,473 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:48:57,493 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:48:57,493 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:48:59,070 - node_1_1 - INFO - Received Kafka message on topic upload: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:48:59,070 - node_1_1 - INFO - Received Kafka message on topic upload: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:48:59,070 - node_1_1 - INFO - Fetching file 1 from supernode (node None) at http://supernode:5000/files/1/fetch
+2025-05-16 17:48:59,070 - node_1_1 - INFO - Fetching file 1 from supernode (node None) at http://supernode:5000/files/1/fetch
+2025-05-16 17:49:00,880 - node_1_1 - INFO - Replicated file 1 to local path node_files/1
+2025-05-16 17:49:00,880 - node_1_1 - INFO - Replicated file 1 to local path node_files/1
+2025-05-16 17:49:00,885 - node_1_1 - INFO - Sent replication message to 'replicate' topic: file_id=1, path=files/1, leader_node_id=1
+2025-05-16 17:49:00,885 - node_1_1 - INFO - Sent replication message to 'replicate' topic: file_id=1, path=files/1, leader_node_id=1
+2025-05-16 17:49:00,889 - node_1_1 - INFO - Received Kafka message on topic replicate: {'file_id': '1', 'path': 'files/1', 'leader_node_id': '1'}
+2025-05-16 17:49:00,889 - node_1_1 - INFO - Received Kafka message on topic replicate: {'file_id': '1', 'path': 'files/1', 'leader_node_id': '1'}
+2025-05-16 17:49:00,890 - node_1_1 - INFO - File 1 already replicated, skipping fetch
+2025-05-16 17:49:00,890 - node_1_1 - INFO - File 1 already replicated, skipping fetch
+2025-05-16 17:49:07,509 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:07,509 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:17,508 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:17,508 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:27,532 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:27,532 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:37,541 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:37,541 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:47,535 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:47,535 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:57,544 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:49:57,544 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:07,567 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:07,567 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:17,572 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:17,572 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:27,595 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:27,595 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:37,618 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:37,618 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:47,617 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:47,617 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:57,641 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:50:57,641 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:07,646 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:07,646 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:17,632 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:17,632 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:27,642 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:27,642 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:37,665 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:37,665 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:47,664 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:47,664 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:57,683 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:51:57,683 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:07,698 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:07,698 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:17,684 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:17,684 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:27,704 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:27,704 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:37,726 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:37,726 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:47,719 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:47,719 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:57,733 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:52:57,733 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:53:37,241 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:53:37,242 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:53:37,243 - node_1_1 - INFO - Elected leader is node 1
+2025-05-16 17:53:37,243 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=True
+2025-05-16 17:54:08,604 - node_1_1 - INFO - Starting node 1 in cluster 1, is_leader=True
+2025-05-16 17:54:08,606 - node_1_1 - INFO - Starting leader election
+2025-05-16 17:54:12,645 - node_1_1 - INFO - Elected leader is node 1
+2025-05-16 17:54:12,645 - node_1_1 - INFO - Leader election completed. Node 1 is_leader=True
+2025-05-16 17:54:12,651 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=True
+2025-05-16 17:54:12,651 - node_1_1 - INFO - Node 1 in cluster 1 initialized, is_leader=True
+2025-05-16 17:54:12,653 - node_1_1 - INFO - Started HTTP server on port 5001
+2025-05-16 17:54:12,653 - node_1_1 - INFO - Started HTTP server on port 5001
+2025-05-16 17:54:12,658 - node_1_1 - INFO - Kafka consumer connected successfully for topics ['replicate', 'upload']
+2025-05-16 17:54:12,658 - node_1_1 - INFO - Kafka consumer connected successfully for topics ['replicate', 'upload']
+2025-05-16 17:54:12,658 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:12,659 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:54:12,658 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:12,659 - node_1_1 - INFO - Started work-stealing thread
+2025-05-16 17:54:22,643 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:22,643 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:25,605 - node_1_1 - INFO - Received Kafka message on topic upload: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:54:25,605 - node_1_1 - INFO - Received Kafka message on topic upload: {'file_id': '1', 'path': 'files/1'}
+2025-05-16 17:54:25,606 - node_1_1 - INFO - Fetching file 1 from supernode (node None) at http://supernode:5000/files/1/fetch
+2025-05-16 17:54:25,606 - node_1_1 - INFO - Fetching file 1 from supernode (node None) at http://supernode:5000/files/1/fetch
+2025-05-16 17:54:26,002 - node_1_1 - INFO - Replicated file 1 to local path node_files/1
+2025-05-16 17:54:26,002 - node_1_1 - INFO - Replicated file 1 to local path node_files/1
+2025-05-16 17:54:26,005 - node_1_1 - INFO - Sent replication message to 'replicate' topic: file_id=1, path=files/1, leader_node_id=1
+2025-05-16 17:54:26,005 - node_1_1 - INFO - Sent replication message to 'replicate' topic: file_id=1, path=files/1, leader_node_id=1
+2025-05-16 17:54:26,008 - node_1_1 - INFO - Received Kafka message on topic replicate: {'file_id': '1', 'path': 'files/1', 'leader_node_id': '1'}
+2025-05-16 17:54:26,008 - node_1_1 - INFO - Received Kafka message on topic replicate: {'file_id': '1', 'path': 'files/1', 'leader_node_id': '1'}
+2025-05-16 17:54:26,009 - node_1_1 - INFO - File 1 already replicated, skipping fetch
+2025-05-16 17:54:26,009 - node_1_1 - INFO - File 1 already replicated, skipping fetch
+2025-05-16 17:54:32,652 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:32,652 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:42,675 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:42,675 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:52,674 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:54:52,674 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:02,698 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:02,698 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:12,721 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:12,721 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:22,703 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:22,703 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:32,707 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:32,707 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:42,730 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:42,730 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:52,723 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:55:52,723 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:02,743 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:02,743 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:12,758 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:12,758 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:22,758 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:22,758 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:32,781 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:32,781 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:42,805 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:42,805 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:52,794 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:56:52,794 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:02,804 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:02,804 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:12,827 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:12,827 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:22,826 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:22,826 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:32,839 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:32,839 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:42,859 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:42,859 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:52,858 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:57:52,858 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:02,874 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:02,874 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:12,898 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:12,898 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:22,897 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:22,897 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:32,907 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:32,907 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:42,920 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:42,920 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:52,919 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:58:52,919 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:02,936 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:02,936 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:12,956 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:12,956 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:22,954 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:22,954 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:32,960 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:32,960 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:42,984 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:42,984 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:52,976 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 17:59:52,976 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:03,000 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:03,000 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:13,016 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:13,016 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:23,011 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:23,011 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:33,021 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:33,021 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:43,045 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:43,045 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:53,036 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:00:53,036 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:03,056 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:03,056 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:13,066 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:13,066 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:23,052 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:23,052 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:33,072 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:33,072 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:43,096 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:43,096 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:53,095 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:01:53,095 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:03,125 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:03,125 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:13,137 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:13,137 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:23,136 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:23,136 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:33,142 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:33,142 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:43,162 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:43,162 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:53,155 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:02:53,155 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:03,170 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:03,170 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:13,187 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:13,187 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:23,169 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:23,169 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:33,179 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:33,179 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:43,189 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:43,189 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:53,200 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:03:53,200 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:03,217 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:03,217 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:13,241 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:13,241 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:23,240 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:23,240 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:33,242 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:33,242 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:43,267 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:43,267 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:53,266 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:04:53,266 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:03,277 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:03,277 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:13,301 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:13,301 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:23,300 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:23,300 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:33,321 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:33,321 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:43,331 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:43,331 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:53,330 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:05:53,330 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:03,354 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:03,354 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:13,378 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:13,378 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:23,378 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:23,378 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:33,402 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:33,402 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:43,426 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:43,426 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:53,406 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:06:53,406 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:07:03,416 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:07:03,416 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:07:13,426 - node_1_1 - INFO - Performing work-stealing
+2025-05-16 18:07:13,426 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:46:44,587 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:46:44,587 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:46:31,952 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:46:31,952 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:46:41,962 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:46:41,962 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:46:52,012 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:46:52,012 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:47:02,000 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:47:02,000 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:47:12,008 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:47:12,008 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:47:22,038 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:47:22,038 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:47:32,019 - node_1_1 - INFO - Performing work-stealing
+2025-05-17 01:47:32,019 - node_1_1 - INFO - Performing work-stealing

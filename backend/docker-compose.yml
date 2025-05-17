@@ -1,0 +1,86 @@
+version: '3'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  kafka-topics:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - kafka
+    volumes:
+      - ./kafka-topics.sh:/kafka-topics.sh
+    command: ["sh", "/kafka-topics.sh"]
+
+  supernode:
+    build: ./supernode
+    ports:
+      - "5000:5000"
+    depends_on:
+      - kafka
+
+  supernode-replica:
+    build: ./supernode-replica
+    depends_on:
+      - kafka
+
+  cluster1-node1:
+    build: ./cluster
+    depends_on:
+      - kafka
+      - supernode
+    command: ["python", "node.py", "1", "1", "true"]
+    ports:
+      - "5001:5001"  # Expose port for HTTP server
+    volumes:
+      - ./cluster_logs:/app/logs
+      - ./node_files/node1:/app/node_files
+
+  cluster1-node2:
+    build: ./cluster
+    depends_on:
+      - kafka
+      - supernode
+      - cluster1-node1  # Ensure leader starts first
+    command: ["python", "node.py", "2", "1", "false"]
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./cluster_logs:/app/logs
+      - ./node_files/node2:/app/node_files
+
+  cluster1-node3:
+    build: ./cluster
+    depends_on:
+      - kafka
+      - supernode
+      - cluster1-node1
+    command: ["python", "node.py", "3", "1", "false"]
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./cluster_logs:/app/logs
+      - ./node_files/node3:/app/node_files
+
+  frontend:
+    build: ../frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - supernode
+
+volumes:
+  cluster_logs:
+  node_files:
