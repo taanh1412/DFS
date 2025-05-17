@@ -22,31 +22,32 @@ function ShareFile({ open, onClose, fileId, token }) {
   };
 
   const handleGeneratePublicLink = async () => {
-    console.log('fileId:', fileId);  // Debug log to check fileId value
+    console.log('fileId:', fileId);  // Already present, will show UUID
     if (!fileId) {
-      alert('File ID is missing');
-      return;
+        alert('File ID is missing');
+        return;
     }
     try {
-      const response = await fetch('http://localhost:5000/share/public', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({ file_id: fileId }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setPublicLink(data.link);
-      } else {
-        alert(data.message || 'Failed to generate public link');
-      }
+        const requestBody = { file_id: fileId };
+        console.log('Generate public link request body:', requestBody);
+        const response = await fetch('http://localhost:5000/share/public', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(requestBody),
+        });
+        const data = await response.json();
+        if (response.ok) {
+            setPublicLink(data.link);
+        } else {
+            alert(data.message || 'Failed to generate public link');
+        }
     } catch (err) {
-      alert('Failed to generate public link');
+        alert('Failed to generate public link');
     }
-  };
-
+};
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Share File</DialogTitle>

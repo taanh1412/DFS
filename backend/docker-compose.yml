@@ -24,26 +24,36 @@ services:
       - ./kafka-topics.sh:/kafka-topics.sh
     command: ["sh", "/kafka-topics.sh"]
 
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    command: ["redis-server"]
+
   supernode:
     build: ./supernode
     ports:
       - "5000:5000"
     depends_on:
       - kafka
+      - redis
+    command: ["python", "app.py"]
 
   supernode-replica:
     build: ./supernode-replica
     depends_on:
       - kafka
+      - redis
+    command: ["python", "app.py"]
 
   cluster1-node1:
     build: ./cluster
     depends_on:
       - kafka
       - supernode
-    command: ["python", "node.py", "1", "1", "true"]
+    command: ["python", "node.py", "1", "1"]
     ports:
-      - "5001:5001"  # Expose port for HTTP server
+      - "5001:5001"
     volumes:
       - ./cluster_logs:/app/logs
       - ./node_files/node1:/app/node_files
@@ -53,8 +63,7 @@ services:
     depends_on:
       - kafka
       - supernode
-      - cluster1-node1  # Ensure leader starts first
-    command: ["python", "node.py", "2", "1", "false"]
+    command: ["python", "node.py", "2", "1"]
     ports:
       - "5002:5002"
     volumes:
@@ -66,13 +75,72 @@ services:
     depends_on:
       - kafka
       - supernode
-      - cluster1-node1
-    command: ["python", "node.py", "3", "1", "false"]
+    command: ["python", "node.py", "3", "1"]
     ports:
       - "5003:5003"
     volumes:
       - ./cluster_logs:/app/logs
       - ./node_files/node3:/app/node_files
+
+  cluster2-node4:
+    build: ./cluster
+    depends_on:
+      - kafka
+      - supernode
+    command: ["python", "node.py", "4", "2"]
+    ports:
+      - "5004:5004"
+    volumes:
+      - ./cluster_logs:/app/logs
+      - ./node_files/node4:/app/node_files
+
+  cluster2-node5:
+    build: ./cluster
+    depends_on:
+      - kafka
+      - supernode
+    command: ["python", "node.py", "5", "2"]
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./cluster_logs:/app/logs
+      - ./node_files/node5:/app/node_files
+
+  cluster2-node6:
+    build: ./cluster
+    depends_on:
+      - kafka
+      - supernode
+    command: ["python", "node.py", "6", "2"]
+    ports:
+      - "5006:5006"
+    volumes:
+      - ./cluster_logs:/app/logs
+      - ./node_files/node6:/app/node_files
+
+  watchdog-cluster1:  # Watchdog for Cluster 1
+    build: ./cluster
+    depends_on:
+      - kafka
+    command: ["python", "watchdog.py", "1"]
+    volumes:
+      - ./cluster_logs:/app/logs
+
+  watchdog-cluster2:  # Watchdog for Cluster 2
+    build: ./cluster
+    depends_on:
+      - kafka
+    command: ["python", "watchdog.py", "2"]
+    volumes:
+      - ./cluster_logs:/app/logs
+
+  kafka-monitor:
+    build: ./cluster
+    depends_on:
+      - kafka
+    command: ["python", "kafka_monitor.py", "--from-beginning"]
+    volumes:
+      - ./cluster_logs:/app/logs
 
   frontend:
     build: ../frontend
@@ -80,6 +148,7 @@ services:
       - "3000:3000"
     depends_on:
       - supernode
+    command: ["sh", "-c", "echo 'Starting Frontend with 10-second delay...' && sleep 10 && echo 'Delay completed, starting Frontend...' && npm start"]
 
 volumes:
   cluster_logs:

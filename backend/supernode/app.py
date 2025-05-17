@@ -3,16 +3,38 @@ import jwt
 import json
 import os
 from kafka import KafkaProducer, KafkaConsumer
+from kafka.admin import KafkaAdminClient  # Added for Kafka readiness check
 import threading
 from flask_cors import CORS
 import time
+import uuid
+import redis
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 SECRET_KEY = "your-secret-key"
+time.sleep(10)  # Simulate a delay for the supernode to be ready
+# Initialize Redis client
+redis_client = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
+
+# Function to wait for Kafka to be ready
+def wait_for_kafka():
+    retries = 6  # 6 retries * 5 seconds = 30 seconds max wait
+    for i in range(retries):
+        try:
+            admin_client = KafkaAdminClient(bootstrap_servers='kafka:9092')
+            admin_client.list_topics()  # Test Kafka connectivity
+            print("Kafka is ready")
+            return
+        except Exception as e:
+            print(f"Kafka not ready, attempt {i+1}/{retries}: {e}")
+            if i < retries - 1:
+                time.sleep(5)
+    raise Exception("Kafka failed to start after maximum retries")
 
 # Initialize Kafka producer with retry
 def create_kafka_producer():
+    wait_for_kafka()  # Wait for Kafka to be ready
     retries = 5
     for i in range(retries):
         try:
@@ -30,7 +52,7 @@ def create_kafka_producer():
 
 producer = create_kafka_producer()
 
-# Load users and files
+# Load users from users.json (keeping users in JSON for simplicity)
 def load_data(file_path, default_data):
     if os.path.exists(file_path):
         try:
@@ -43,17 +65,29 @@ def load_data(file_path, default_data):
             return default_data
     return default_data
 
-users = load_data('users.json', {})
-files = load_data('files.json', {})
-
 def save_data(file_path, data):
     with open(file_path, 'w') as f:
         json.dump(data, f)
 
+users = load_data('users.json', {})
+
 # Sync with replica (eventual consistency)
 def sync_with_replica():
     while True:
-        producer.send('sync', {'users': users, 'files': files})
+        file_keys = redis_client.keys('file:*')
+        files = {}
+        for key in file_keys:
+            file_id = key.split(':')[1]
+            file_data = redis_client.hgetall(key)
+            files[file_id] = file_data
+        shared_with_keys = redis_client.keys('shared_with:*')
+        shared_with = {}
+        for key in shared_with_keys:
+            email = key.split(':')[1]
+            shared_files = list(redis_client.smembers(key))
+            shared_with[email] = shared_files
+        producer.send('sync', {'users': users, 'files': files, 'shared_with': shared_with})
+        time.sleep(1)
 
 threading.Thread(target=sync_with_replica, daemon=True).start()
 
@@ -84,11 +118,14 @@ def upload():
     token = request.headers.get('Authorization').split()[1]
     email = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])['email']
     file = request.files['file']
-    file_id = str(len(files) + 1)
+    file_id = str(uuid.uuid4())
     file_path = f"files/{file_id}"
     file.save(file_path)
-    files[file_id] = {'name': file.filename, 'owner': email, 'path': file_path}
-    save_data('files.json', files)
+    redis_client.hset(f"file:{file_id}", mapping={
+        'name': file.filename,
+        'owner': email,
+        'path': file_path
+    })
     try:
         producer.send('upload', {'file_id': file_id, 'path': file_path})
         print(f"Sent Kafka message to 'upload' topic: file_id={file_id}, path={file_path}")
@@ -100,18 +137,35 @@ def upload():
 def list_files():
     token = request.headers.get('Authorization').split()[1]
     email = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])['email']
-    user_files = [{'id': k, 'name': v['name']} for k, v in files.items() if v['owner'] == email]
+    file_keys = redis_client.keys('file:*')
+    user_files = []
+    for key in file_keys:
+        file_id = key.split(':')[1]
+        file_data = redis_client.hgetall(key)
+        if file_data.get('owner') == email:
+            user_files.append({'id': file_id, 'name': file_data['name'], 'shared': False})
+    shared_file_ids = redis_client.smembers(f"shared_with:{email}")
+    for file_id in shared_file_ids:
+        file_key = f"file:{file_id}"
+        if redis_client.exists(file_key):
+            file_data = redis_client.hgetall(file_key)
+            user_files.append({'id': file_id, 'name': file_data['name'], 'shared': True})
     return jsonify({'files': user_files})
 
 @app.route('/files/<file_id>', methods=['DELETE'])
 def delete_file(file_id):
     token = request.headers.get('Authorization').split()[1]
     email = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])['email']
-    if file_id not in files or files[file_id]['owner'] != email:
-        return jsonify({'message': 'File not found or unauthorized'}), 404
-    os.remove(files[file_id]['path'])
-    del files[file_id]
-    save_data('files.json', files)
+    file_key = f"file:{file_id}"
+    if not redis_client.exists(file_key):
+        return jsonify({'message': 'File not found'}), 404
+    file_data = redis_client.hgetall(file_key)
+    if file_data.get('owner') != email:
+        return jsonify({'message': 'Unauthorized'}), 404
+    os.remove(file_data['path'])
+    for shared_key in redis_client.keys('shared_with:*'):
+        redis_client.srem(shared_key, file_id)
+    redis_client.delete(file_key)
     producer.send('delete', {'file_id': file_id})
     return jsonify({'message': 'File deleted'})
 
@@ -122,8 +176,13 @@ def share_email():
     data = request.json
     file_id = data['file_id']
     target_email = data['email']
-    if file_id not in files or files[file_id]['owner'] != email:
-        return jsonify({'message': 'File not found or unauthorized'}), 404
+    file_key = f"file:{file_id}"
+    if not redis_client.exists(file_key):
+        return jsonify({'message': 'File not found'}), 404
+    file_data = redis_client.hgetall(file_key)
+    if file_data.get('owner') != email:
+        return jsonify({'message': 'Unauthorized'}), 404
+    redis_client.sadd(f"shared_with:{target_email}", file_id)
     return jsonify({'message': 'File shared via email'})
 
 @app.route('/share/public', methods=['POST'])
@@ -148,8 +207,12 @@ def share_public():
     
     file_id = request.json['file_id']
     
-    if file_id not in files or files[file_id]['owner'] != email:
-        return jsonify({'message': 'File not found or unauthorized'}), 404
+    file_key = f"file:{file_id}"
+    if not redis_client.exists(file_key):
+        return jsonify({'message': 'File not found'}), 404
+    file_data = redis_client.hgetall(file_key)
+    if file_data.get('owner') != email:
+        return jsonify({'message': 'Unauthorized'}), 404
     
     link = f"http://localhost:5000/files/{file_id}/public"
     return jsonify({'link': link})
@@ -170,26 +233,35 @@ def download_file(file_id):
     except jwt.exceptions.InvalidTokenError:
         return jsonify({'message': 'Invalid token'}), 401
     
-    if file_id not in files or files[file_id]['owner'] != email:
-        return jsonify({'message': 'File not found or unauthorized'}), 404
+    file_key = f"file:{file_id}"
+    if not redis_client.exists(file_key):
+        return jsonify({'message': 'File not found'}), 404
+    file_data = redis_client.hgetall(file_key)
+    shared_file_ids = redis_client.smembers(f"shared_with:{email}")
+    if file_data.get('owner') != email and file_id not in shared_file_ids:
+        return jsonify({'message': 'Unauthorized'}), 404
     
-    file_path = files[file_id]['path']
-    file_name = files[file_id]['name']
+    file_path = file_data['path']
+    file_name = file_data['name']
     return send_file(file_path, as_attachment=True, download_name=file_name)
 
 @app.route('/files/<file_id>/fetch', methods=['GET'])
 def fetch_file(file_id):
-    if file_id not in files:
+    file_key = f"file:{file_id}"
+    if not redis_client.exists(file_key):
         return jsonify({'message': 'File not found'}), 404
-    file_path = files[file_id]['path']
+    file_data = redis_client.hgetall(file_key)
+    file_path = file_data['path']
     return send_file(file_path, as_attachment=False)
 
-@app.route('/files/<file_id>/public', methods=['GET'])  # New endpoint for public links
+@app.route('/files/<file_id>/public', methods=['GET'])
 def public_download_file(file_id):
-    if file_id not in files:
+    file_key = f"file:{file_id}"
+    if not redis_client.exists(file_key):
         return jsonify({'message': 'File not found'}), 404
-    file_path = files[file_id]['path']
-    file_name = files[file_id]['name']
+    file_data = redis_client.hgetall(file_key)
+    file_path = file_data['path']
+    file_name = file_data['name']
     return send_file(file_path, as_attachment=True, download_name=file_name)
 
 if __name__ == '__main__':

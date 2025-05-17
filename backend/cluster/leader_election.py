@@ -5,67 +5,82 @@ import logging
 # Configure logging for leader election
 def setup_logging(node_id):
     logger = logging.getLogger(f'raft_node_{node_id}')
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.DEBUG)  # Changed to DEBUG for better visibility
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.INFO)
+    console_handler.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
     return logger
 
 class RaftNode:
-    def __init__(self, node_id, nodes):
+    def __init__(self, node_id, nodes, cluster_id):
         self.node_id = node_id
         self.nodes = nodes
+        self.cluster_id = cluster_id
         self.state = 'follower'
         self.current_term = 0
-        self.voted_for = None
         self.leader = None
         self.logger = setup_logging(node_id)
         self.logger.info(f"RaftNode {self.node_id} initialized as {self.state}")
+        self.election_timeout = random.uniform(10, 20)
+        self.last_heartbeat_check = time.time()
+        self.last_leader_health_message = time.time()
+        self.leader_is_alive = False
 
-    def start_election(self):
-        self.state = 'candidate'
-        self.current_term += 1
-        self.voted_for = self.node_id
-        self.logger.info(f"Starting election for term {self.current_term}, voted for self")
-        votes = 1  # Vote for self
-        for node in self.nodes:
-            if node != self:
-                # Deterministic voting: vote yes if this node's term is higher
-                if node.voted_for is None or node.current_term < self.current_term:
-                    votes += 1
-                    node.voted_for = self.node_id
-                    node.current_term = self.current_term
-                    self.logger.debug(f"Received vote from node {node.node_id}")
-        self.logger.info(f"Election completed, received {votes} votes out of {len(self.nodes)}")
-        if votes > len(self.nodes) // 2:
-            self.state = 'leader'
-            self.leader = self.node_id
-            self.logger.info(f"Elected as leader for term {self.current_term}")
+    def ping_leader(self):
+        if self.leader is None:
+            self.logger.debug("No leader set, assuming leader is down")
+            return False
+        current_time = time.time()
+        if self.leader_is_alive and (current_time - self.last_heartbeat_check) < self.election_timeout:
+            self.logger.debug(f"Leader {self.leader} is alive, last health message at {self.last_leader_health_message}")
             return True
-        self.state = 'follower'
-        self.logger.info(f"Failed to become leader, reverting to follower")
+        self.logger.debug(f"No recent health message from leader {self.leader}, last received at {self.last_leader_health_message}, current time {current_time}")
         return False
 
-    def run(self):
-        attempts = 0
-        while attempts < 10:  # Limit attempts to prevent infinite loop
-            if self.state == 'follower' and random.random() < 0.5:  # Increased probability to 50%
-                self.logger.info("Election timeout, starting new election")
-                if self.start_election():
-                    return True
-            time.sleep(1)
-            attempts += 1
-        self.logger.warning("No leader elected after maximum attempts")
+    def update_leader_status(self, is_leader_alive, timestamp):
+        self.leader_is_alive = is_leader_alive
+        if is_leader_alive:
+            self.last_leader_health_message = timestamp
+            self.last_heartbeat_check = time.time()
+        self.logger.debug(f"Updated leader status: is_leader_alive={is_leader_alive}, timestamp={timestamp}")
+
+    def monitor_leader(self):
+        while True:
+            if self.state != 'leader':
+                current_time = time.time()
+                if (current_time - self.last_heartbeat_check) > self.election_timeout:
+                    self.logger.info(f"Election timeout ({self.election_timeout:.2f}s), checking leader status")
+                    if not self.ping_leader():
+                        self.logger.info(f"Leader {self.leader} confirmed down, waiting for watchdog to assign new leader")
+                        self.last_heartbeat_check = time.time()
+                    else:
+                        self.logger.debug(f"Leader {self.leader} is still alive, resetting timeout")
+                        self.last_heartbeat_check = time.time()
+            time.sleep(0.05)
         return False
 
 def elect_leader(nodes):
-    attempts = 0
-    while attempts < 10:  # Limit attempts to prevent infinite loop
-        for node in nodes:
-            if node.run() and node.state == 'leader':
-                return node
-        attempts += 1
-        time.sleep(1)
-    raise Exception("Failed to elect a leader after maximum attempts")
+    cluster_id = nodes[0].cluster_id
+    if cluster_id == '1':
+        first_node_id = 1
+    elif cluster_id == '2':
+        first_node_id = 4
+    else:
+        raise ValueError(f"Unsupported cluster_id: {cluster_id}")
+
+    for node in nodes:
+        if node.node_id == first_node_id:
+            node.state = 'leader'
+            node.leader = node.node_id
+            node.current_term = 1
+            node.logger.info(f"Set as initial leader for term {node.current_term}")
+            for n in nodes:
+                if n != node:
+                    n.leader = node.node_id
+                    n.current_term = node.current_term
+                    n.last_heartbeat_check = time.time()
+            return node
+
+    raise Exception(f"First node {first_node_id} not found in cluster {cluster_id}")

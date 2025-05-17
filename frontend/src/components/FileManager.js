@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Typography, Container, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
-import DownloadIcon from '@mui/icons-material/Download';  // Added DownloadIcon
+import DownloadIcon from '@mui/icons-material/Download';
 import ShareFile from './ShareFile';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ function FileManager({ token, setToken }) {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       const data = await response.json();
-      console.log('Fetched files:', data.files);  // Debug log
+      console.log('Fetched files:', data.files);
       setFiles(data.files || []);
     } catch (err) {
       alert('Failed to fetch files');
@@ -58,12 +58,12 @@ function FileManager({ token, setToken }) {
   };
 
   const handleShare = (fileId) => {
-    console.log('Selected fileId:', fileId);  // Debug log
+    console.log('Selected fileId:', fileId);
     setSelectedFile(fileId);
     setShareDialogOpen(true);
   };
 
-  const handleDownload = async (fileId) => {  // New download handler
+  const handleDownload = async (fileId) => {
     try {
       const response = await fetch(`http://localhost:5000/files/${fileId}/download`, {
         headers: { 'Authorization': `Bearer ${token}` },
@@ -76,7 +76,7 @@ function FileManager({ token, setToken }) {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = files.find(file => file.id === fileId).name;  // Get file name from the list
+      link.download = files.find(file => file.id === fileId).name;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -104,18 +104,25 @@ function FileManager({ token, setToken }) {
         {files.map((file) => (
           <ListItem key={file.id} secondaryAction={
             <>
-              <IconButton onClick={() => handleDownload(file.id)}>  {/* Added download button */}
+              <IconButton onClick={() => handleDownload(file.id)}>
                 <DownloadIcon />
               </IconButton>
-              <IconButton onClick={() => handleShare(file.id)}>
-                <ShareIcon />
-              </IconButton>
-              <IconButton onClick={() => handleDelete(file.id)}>
-                <DeleteIcon />
-              </IconButton>
+              {!file.shared && (  // Only show share button for owned files
+                <IconButton onClick={() => handleShare(file.id)}>
+                  <ShareIcon />
+                </IconButton>
+              )}
+              {!file.shared && (  // Only show delete button for owned files
+                <IconButton onClick={() => handleDelete(file.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              )}
             </>
           }>
-            <ListItemText primary={file.name} />
+            <ListItemText
+              primary={file.name}
+              secondary={file.shared ? 'Shared with you' : 'Owned by you'}
+            />
           </ListItem>
         ))}
       </List>
