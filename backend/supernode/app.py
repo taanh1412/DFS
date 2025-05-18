@@ -149,7 +149,7 @@ def list_files():
         file_key = f"file:{file_id}"
         if redis_client.exists(file_key):
             file_data = redis_client.hgetall(file_key)
-            user_files.append({'id': file_id, 'name': file_data['name'], 'shared': True})
+            user_files.append({'id': file_id, 'name': file_data['name'], 'shared': True, 'owner': file_data['owner']})
     return jsonify({'files': user_files})
 
 @app.route('/files/<file_id>', methods=['DELETE'])

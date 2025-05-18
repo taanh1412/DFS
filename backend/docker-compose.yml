@@ -148,7 +148,7 @@ services:
       - "3000:3000"
     depends_on:
       - supernode
-    command: ["sh", "-c", "echo 'Starting Frontend with 10-second delay...' && sleep 10 && echo 'Delay completed, starting Frontend...' && npm start"]
+    command: ["sh", "-c", "npm start"]
 
 volumes:
   cluster_logs:

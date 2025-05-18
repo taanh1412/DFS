@@ -4,7 +4,7 @@ import {
   IconButton, TextField, Box, CircularProgress, FormControl, 
   InputLabel, Select, MenuItem, AppBar, Toolbar, Paper, Grid,
   Card, CardContent, CardActions, CardMedia, ToggleButtonGroup, ToggleButton,
-  Tooltip, Divider, LinearProgress
+  Tooltip, Divider, LinearProgress, Snackbar, Alert
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
@@ -17,10 +17,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import VisibilityIcon from '@mui/icons-material/Visibility'; // Add this import
 import FileTypeIcon from './FileTypeIcon';
 import ShareFile from './ShareFile';
 import RecentFiles from './RecentFiles';
 import FileDetails from './FileDetails';
+import FilePreview from './FilePreview'; // Add this import
 import { useNavigate } from 'react-router-dom';
 
 function FileManager({ token, setToken }) {
@@ -43,7 +45,18 @@ function FileManager({ token, setToken }) {
   const [storageUsed, setStorageUsed] = useState(0); // in bytes
   const MAX_STORAGE_BYTES = 107374182400; // 100GB in bytes
   
+  // New state variables for file preview
+  const [previewFile, setPreviewFile] = useState(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  
+  // Add this new state for notification
+  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
+  
   const navigate = useNavigate();
+
+  const toggleRecentFiles = () => {
+    setShowRecentFiles(prev => !prev);
+  };
 
   const fetchFiles = async () => {
     setIsLoading(true);
@@ -260,33 +273,73 @@ function FileManager({ token, setToken }) {
     navigate('/login');
   };
 
+  // Modify handleFileSelect to auto-preview when possible
   const handleFileSelect = (file) => {
-    setSelectedFileDetails(file);
+    // Check if file can be previewed based on extension
+    const extension = file.name.split('.').pop().toLowerCase();
+    
+    // List of file types that can be previewed
+    const previewableTypes = [
+      // Images
+      'jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp',
+      // PDFs
+      'pdf',
+      // Text files
+      'txt', 'md', 'rtf', 'csv', 'json', 'xml', 'html', 'css', 'js',
+      // Audio
+      'mp3', 'wav', 'ogg', 'aac', 'flac',
+      // Video
+      'mp4', 'webm', 'ogv', 'mov', 'avi'
+    ];
+    
+    if (previewableTypes.includes(extension)) {
+      // If file can be previewed, open preview dialog
+      handlePreviewFile(file);
+    } else {
+      // If file cannot be previewed, show file details and notify user
+      setSelectedFileDetails(file);
+      setNotification({
+        open: true,
+        message: 'This file type cannot be previewed directly',
+        severity: 'info'
+      });
+    }
   };
   
-  // Toggle recent files visibility
-  const toggleRecentFiles = () => {
-    setShowRecentFiles(!showRecentFiles);
+  // Add a function to close notifications
+  const handleCloseNotification = () => {
+    setNotification({ ...notification, open: false });
+  };
+
+  // New handler for file preview
+  const handlePreviewFile = (file) => {
+    setPreviewFile(file);
+    setPreviewOpen(true);
   };
   
+  // Handler to close the preview
+  const handleClosePreview = () => {
+    setPreviewOpen(false);
+  };
+
   // Drag and drop handlers
   const handleDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
   };
-  
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   const handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
   };
-  
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-  
+
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -297,7 +350,7 @@ function FileManager({ token, setToken }) {
       uploadFile(file);
     }
   };
-  
+
   return (
     <>
       {/* Navigation Bar remains the same */}
@@ -495,7 +548,7 @@ function FileManager({ token, setToken }) {
           <>
             {filteredFiles.length > 0 ? (
               viewMode === 'list' ? (
-                /* List View - similar to your current implementation */
+                /* List View - with preview button added */
                 <List>
                   {filteredFiles.map((file) => (
                     <ListItem 
@@ -508,6 +561,14 @@ function FileManager({ token, setToken }) {
                       }}
                       secondaryAction={
                         <>
+                          <Tooltip title="Preview">
+                            <IconButton onClick={(e) => { 
+                              e.stopPropagation(); 
+                              handlePreviewFile(file); 
+                            }}>
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Tooltip>
                           <IconButton onClick={(e) => { 
                             e.stopPropagation(); 
                             handleDownload(file.id); 
@@ -540,13 +601,24 @@ function FileManager({ token, setToken }) {
                             <Typography>{file.name}</Typography>
                           </Box>
                         }
-                        secondary={file.shared ? 'Shared with you' : 'Owned by you'}
+                        secondary={
+                          file.shared ? (
+                            <Box component="span">
+                              <Typography variant="body2" component="span" color="text.secondary">
+                                Shared by: 
+                              </Typography>
+                              <Typography variant="body2" component="span" color="primary.main" sx={{ ml: 0.5, fontWeight: 'medium' }}>
+                                {file.owner || "Unknown user"}
+                              </Typography>
+                            </Box>
+                          ) : 'Owned by you'
+                        }
                       />
                     </ListItem>
                   ))}
                 </List>
               ) : (
-                /* Grid View - new implementation */
+                /* Grid View - with preview button added */
                 <Grid container spacing={2}>
                   {filteredFiles.map((file) => (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={file.id}>
@@ -569,12 +641,30 @@ function FileManager({ token, setToken }) {
                           <Typography variant="subtitle1" noWrap title={file.name}>
                             {file.name}
                           </Typography>
-                          <Typography variant="body2" color="textSecondary">
-                            {file.shared ? 'Shared with you' : 'Owned by you'}
+                          <Typography variant="body2" color="text.secondary">
+                            {file.shared ? (
+                              <>
+                                Shared by: <Box component="span" sx={{ color: 'primary.main', fontWeight: 'medium' }}>
+                                  {file.owner || "Unknown user"}
+                                </Box>
+                              </>
+                            ) : 'Owned by you'}
                           </Typography>
                         </CardContent>
                         <Divider />
                         <CardActions sx={{ justifyContent: 'center', px: 1 }}>
+                          <Tooltip title="Preview">
+                            <IconButton 
+                              size="small" 
+                              onClick={(e) => { 
+                                e.stopPropagation(); 
+                                handlePreviewFile(file); 
+                              }}
+                            >
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Tooltip>
+                          
                           <Tooltip title="Download">
                             <IconButton 
                               size="small" 
@@ -622,6 +712,7 @@ function FileManager({ token, setToken }) {
                 </Grid>
               )
             ) : (
+              /* Empty state remains the same */
               <Paper sx={{ p: 4, textAlign: 'center' }}>
                 <Typography variant="h6" color="textSecondary">
                   {searchQuery ? 'No files match your search' : 'No files found'}
@@ -642,6 +733,31 @@ function FileManager({ token, setToken }) {
           onClose={() => setShareDialogOpen(false)}
           fileId={selectedFile}
           token={token}
+        />
+        
+        {/* Add notification Snackbar */}
+        <Snackbar 
+          open={notification.open} 
+          autoHideDuration={4000} 
+          onClose={handleCloseNotification}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert 
+            onClose={handleCloseNotification} 
+            severity={notification.severity} 
+            sx={{ width: '100%' }}
+          >
+            {notification.message}
+          </Alert>
+        </Snackbar>
+        
+        {/* FilePreview component - keep as is */}
+        <FilePreview
+          open={previewOpen}
+          onClose={handleClosePreview}
+          file={previewFile}
+          token={token}
+          onDownload={() => previewFile && handleDownload(previewFile.id)}
         />
         
         {/* New Footer Component */}
