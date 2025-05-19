@@ -282,6 +282,72 @@ def public_download_file(file_id):
     file_name = file_data['name']
     return send_file(file_path, as_attachment=True, download_name=file_name)
 
+# Add these endpoints to your backend application
+
+@app.route('/profile', methods=['GET'])
+def get_profile():
+    token = request.headers.get('Authorization').split()[1]
+    email = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])['email']
+    
+    user_data = users[email]
+    # Don't send password in the response
+    profile = {
+        'email': email,
+        'fullName': user_data.get('fullName', ''),
+        'organization': user_data.get('organization', ''),
+        'bio': user_data.get('bio', ''),
+        'createdAt': user_data.get('createdAt', str(int(time.time())))
+    }
+    
+    return jsonify(profile)
+
+@app.route('/profile', methods=['PUT'])
+def update_profile():
+    token = request.headers.get('Authorization').split()[1]
+    email = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])['email']
+    
+    data = request.json
+    
+    # Update user data
+    users[email]['fullName'] = data.get('fullName', users[email].get('fullName', ''))
+    users[email]['organization'] = data.get('organization', users[email].get('organization', ''))
+    users[email]['bio'] = data.get('bio', users[email].get('bio', ''))
+    
+    # Save to persistent storage
+    save_data('users.json', users)
+    
+    # Return updated profile
+    profile = {
+        'email': email,
+        'fullName': users[email].get('fullName', ''),
+        'organization': users[email].get('organization', ''),
+        'bio': users[email].get('bio', ''),
+        'createdAt': users[email].get('createdAt', str(int(time.time())))
+    }
+    
+    return jsonify(profile)
+
+@app.route('/profile/password', methods=['PUT'])
+def change_password():
+    token = request.headers.get('Authorization').split()[1]
+    email = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])['email']
+    
+    data = request.json
+    current_password = data.get('currentPassword')
+    new_password = data.get('newPassword')
+    
+    # Verify current password
+    if users[email].get('password') != current_password:
+        return jsonify({'message': 'Current password is incorrect'}), 400
+    
+    # Update password
+    users[email]['password'] = new_password
+    
+    # Save to persistent storage
+    save_data('users.json', users)
+    
+    return jsonify({'message': 'Password updated successfully'})
+
 if __name__ == '__main__':
     os.makedirs('files', exist_ok=True)
     app.run(host='0.0.0.0', port=5000)

@@ -11,11 +11,13 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LoginIcon from '@mui/icons-material/Login';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import Alert from '@mui/material/Alert';
+import PersonIcon from '@mui/icons-material/Person';
 
 function Register({ setToken }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [fullName, setFullName] = useState(''); // Add this state
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ function Register({ setToken }) {
       const response = await fetch('http://localhost:5000/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, fullName }), // Include fullName
       });
       const data = await response.json();
       if (response.ok) {
@@ -101,6 +103,22 @@ function Register({ setToken }) {
                 startAdornment: (
                   <InputAdornment position="start">
                     <EmailIcon color="primary" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            
+            {/* Add this TextField */}
+            <TextField
+              label="Full Name"
+              fullWidth
+              margin="normal"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonIcon color="primary" />
                   </InputAdornment>
                 ),
               }}

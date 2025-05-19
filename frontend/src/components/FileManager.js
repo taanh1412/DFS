@@ -18,12 +18,14 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import VisibilityIcon from '@mui/icons-material/Visibility'; // Add this import
+import PersonIcon from '@mui/icons-material/Person'; // Import PersonIcon for profile button
 import FileTypeIcon from './FileTypeIcon';
 import ShareFile from './ShareFile';
 import RecentFiles from './RecentFiles';
 import FileDetails from './FileDetails';
 import FilePreview from './FilePreview'; // Add this import
 import { useNavigate } from 'react-router-dom';
+import AppNavBar from './AppNavBar';
 
 function FileManager({ token, setToken }) {
   // Existing state variables
@@ -51,6 +53,9 @@ function FileManager({ token, setToken }) {
   
   // Add this new state for notification
   const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
+  
+  // Add this with your other state variables near the top of the component
+  const [profile, setProfile] = useState(null);
   
   const navigate = useNavigate();
 
@@ -378,25 +383,33 @@ function FileManager({ token, setToken }) {
     return formatBytes(size);
   };
 
+  // Add this useEffect to fetch the profile data
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/profile', {
+          headers: { 'Authorization': `Bearer ${token}` },
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          setProfile(data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch profile:', err);
+      }
+    };
+    
+    fetchProfile();
+  }, [token]);
+
   return (
     <>
-      {/* Navigation Bar remains the same */}
-      <AppBar position="static" color="primary" sx={{ mb: 4 }}>
-        <Toolbar>
-          <FolderOpenIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            DFS File Manager
-          </Typography>
-          <Button 
-            color="inherit" 
-            startIcon={<LogoutIcon />}
-            onClick={handleLogout}
-            disabled={isLoading}
-          >
-            Logout
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <AppNavBar 
+        token={token} 
+        setToken={setToken} 
+        userInitial={profile ? (profile.fullName?.charAt(0) || profile.email?.charAt(0)) : ''}
+      />
 
       <Container maxWidth="lg">
         {/* File Details Panel remains the same */}
