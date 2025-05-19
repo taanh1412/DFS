@@ -25,6 +25,9 @@ const FileDetails = ({ file, onClose, onDownload, onShare, onDelete, isOwner }) 
         <Typography variant="body2" color="text.secondary">
           Status: {file.shared ? 'Shared with you' : 'Owned by you'}
         </Typography>
+        <Typography variant="body2" gutterBottom>
+          <strong>Size:</strong> {formatBytes(parseInt(file.size || '0', 10))}
+        </Typography>
       </Box>
       
       <Box sx={{ display: 'flex', gap: 1 }}>

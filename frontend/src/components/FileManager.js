@@ -101,8 +101,8 @@ function FileManager({ token, setToken }) {
     if (files && files.length > 0) {
       // Calculate total size in bytes
       const totalSizeBytes = files.reduce((total, file) => {
-        // Make sure file.size exists and is a number
-        const fileSize = file.size ? Number(file.size) : 0;
+        // Parse the size as a number, defaulting to 0 if not available
+        const fileSize = file.size ? parseInt(file.size, 10) : 0;
         return total + fileSize;
       }, 0);
       
@@ -118,6 +118,7 @@ function FileManager({ token, setToken }) {
     }
   }, [files]);
 
+  // Update the applyFiltersAndSort function
   const applyFiltersAndSort = (fileList, query, sort) => {
     let result = [...fileList];
     
@@ -136,8 +137,27 @@ function FileManager({ token, setToken }) {
       case 'nameDesc':
         result = result.sort((a, b) => b.name.localeCompare(a.name));
         break;
+      case 'sizeAsc':
+        result = result.sort((a, b) => {
+          const sizeA = a.size ? parseInt(a.size, 10) : 0;
+          const sizeB = b.size ? parseInt(b.size, 10) : 0;
+          return sizeA - sizeB;
+        });
+        break;
+      case 'sizeDesc':
+        result = result.sort((a, b) => {
+          const sizeA = a.size ? parseInt(a.size, 10) : 0;
+          const sizeB = b.size ? parseInt(b.size, 10) : 0;
+          return sizeB - sizeA;
+        });
+        break;
       case 'recent':
-        result = result.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        result = result.sort((a, b) => {
+          // Use upload_date if available, otherwise fall back to timestamp
+          const dateA = a.upload_date ? parseInt(a.upload_date, 10) : (a.timestamp || 0);
+          const dateB = b.upload_date ? parseInt(b.upload_date, 10) : (b.timestamp || 0);
+          return dateB - dateA;
+        });
         break;
       default:
         break;
@@ -351,6 +371,13 @@ function FileManager({ token, setToken }) {
     }
   };
 
+  // Add this after your existing formatBytes function
+  const getFileSize = (file) => {
+    // Convert string size to number, or default to 0 if not available
+    const size = file.size ? parseInt(file.size, 10) : 0;
+    return formatBytes(size);
+  };
+
   return (
     <>
       {/* Navigation Bar remains the same */}
@@ -518,6 +545,8 @@ function FileManager({ token, setToken }) {
             >
               <MenuItem value="nameAsc">Name (A-Z)</MenuItem>
               <MenuItem value="nameDesc">Name (Z-A)</MenuItem>
+              <MenuItem value="sizeAsc">Size (Smallest)</MenuItem>
+              <MenuItem value="sizeDesc">Size (Largest)</MenuItem>
               <MenuItem value="recent">Recently Added</MenuItem>
             </Select>
           </FormControl>
@@ -602,16 +631,25 @@ function FileManager({ token, setToken }) {
                           </Box>
                         }
                         secondary={
-                          file.shared ? (
-                            <Box component="span">
-                              <Typography variant="body2" component="span" color="text.secondary">
-                                Shared by: 
+                          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                            {file.shared ? (
+                              <Box component="span">
+                                <Typography variant="body2" component="span" color="text.secondary">
+                                  Shared by: 
+                                </Typography>
+                                <Typography variant="body2" component="span" color="primary.main" sx={{ ml: 0.5, fontWeight: 'medium' }}>
+                                  {file.owner || "Unknown user"}
+                                </Typography>
+                              </Box>
+                            ) : (
+                              <Typography variant="body2" component="span">
+                                Owned by you
                               </Typography>
-                              <Typography variant="body2" component="span" color="primary.main" sx={{ ml: 0.5, fontWeight: 'medium' }}>
-                                {file.owner || "Unknown user"}
-                              </Typography>
-                            </Box>
-                          ) : 'Owned by you'
+                            )}
+                            <Typography variant="caption" color="text.secondary">
+                              {getFileSize(file)}
+                            </Typography>
+                          </Box>
                         }
                       />
                     </ListItem>
@@ -649,6 +687,9 @@ function FileManager({ token, setToken }) {
                                 </Box>
                               </>
                             ) : 'Owned by you'}
+                          </Typography>
+                          <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
+                            {getFileSize(file)}
                           </Typography>
                         </CardContent>
                         <Divider />

@@ -120,11 +120,16 @@ def upload():
     file = request.files['file']
     file_id = str(uuid.uuid4())
     file_path = f"files/{file_id}"
+    file.seek(0, os.SEEK_END)
+    file_size = file.tell()
+    file.seek(0)  # Reset file pointer to beginning
     file.save(file_path)
     redis_client.hset(f"file:{file_id}", mapping={
         'name': file.filename,
         'owner': email,
-        'path': file_path
+        'path': file_path,
+        'size': str(file_size),
+        'upload_date': str(int(time.time()))
     })
     try:
         producer.send('upload', {'file_id': file_id, 'path': file_path})
@@ -143,13 +148,26 @@ def list_files():
         file_id = key.split(':')[1]
         file_data = redis_client.hgetall(key)
         if file_data.get('owner') == email:
-            user_files.append({'id': file_id, 'name': file_data['name'], 'shared': False})
+            user_files.append({
+                'id': file_id, 
+                'name': file_data['name'], 
+                'shared': False,
+                'size': file_data.get('size', '0'),
+                'upload_date': file_data.get('upload_date')
+            })
     shared_file_ids = redis_client.smembers(f"shared_with:{email}")
     for file_id in shared_file_ids:
         file_key = f"file:{file_id}"
         if redis_client.exists(file_key):
             file_data = redis_client.hgetall(file_key)
-            user_files.append({'id': file_id, 'name': file_data['name'], 'shared': True, 'owner': file_data['owner']})
+            user_files.append({
+                'id': file_id, 
+                'name': file_data['name'], 
+                'shared': True, 
+                'owner': file_data['owner'],
+                'size': file_data.get('size', '0'), 
+                'upload_date': file_data.get('upload_date')
+            })
     return jsonify({'files': user_files})
 
 @app.route('/files/<file_id>', methods=['DELETE'])
