@@ -359,6 +359,37 @@ def change_password():
     
     return jsonify({'message': 'Password updated successfully'})
 
+@app.route('/users/<email>', methods=['GET'])
+def get_user_info(email):
+    # Verify the requesting user is authenticated
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) != 2:
+        return jsonify({'message': 'Missing or invalid Authorization header'}), 401
+    
+    token = auth_header.split()[1]
+    
+    try:
+        jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+    except jwt.exceptions.InvalidTokenError:
+        return jsonify({'message': 'Invalid token'}), 401
+    
+    # Check if the requested user exists
+    if email not in users:
+        return jsonify({'message': 'User not found'}), 404
+    
+    # Return only public profile information (no password)
+    user_data = users[email]
+    public_profile = {
+        'email': email,
+        'fullName': user_data.get('fullName', email.split('@')[0]),
+        'organization': user_data.get('organization', ''),
+        'bio': user_data.get('bio', ''),
+        # Only include join date, not any other sensitive info
+        'joinDate': user_data.get('createdAt', '')
+    }
+    
+    return jsonify(public_profile)
+
 if __name__ == '__main__':
     os.makedirs('files', exist_ok=True)
     app.run(host='0.0.0.0', port=5000)

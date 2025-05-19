@@ -57,6 +57,9 @@ function FileManager({ token, setToken }) {
   // Add this with your other state variables near the top of the component
   const [profile, setProfile] = useState(null);
   
+  // Cache to store user profiles to avoid repeated API calls
+  const [userProfiles, setUserProfiles] = useState({});
+
   const navigate = useNavigate();
 
   const toggleRecentFiles = () => {
@@ -403,6 +406,37 @@ function FileManager({ token, setToken }) {
     fetchProfile();
   }, [token]);
 
+  // Function to get user information
+  const getUserInfo = async (email) => {
+    if (userProfiles[email]) {
+      return userProfiles[email];
+    }
+    
+    try {
+      // API call to get user info - you'll need to implement this endpoint
+      const response = await fetch(`http://localhost:5000/users/${encodeURIComponent(email)}`, {
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+      
+      if (response.ok) {
+        const userData = await response.json();
+        
+        // Update the profiles cache
+        setUserProfiles(prev => ({
+          ...prev,
+          [email]: userData
+        }));
+        
+        return userData;
+      }
+      
+      return null;
+    } catch (err) {
+      console.error('Failed to fetch user info:', err);
+      return null;
+    }
+  };
+
   return (
     <>
       <AppNavBar 
@@ -650,9 +684,42 @@ function FileManager({ token, setToken }) {
                                 <Typography variant="body2" component="span" color="text.secondary">
                                   Shared by: 
                                 </Typography>
-                                <Typography variant="body2" component="span" color="primary.main" sx={{ ml: 0.5, fontWeight: 'medium' }}>
-                                  {file.owner || "Unknown user"}
-                                </Typography>
+                                <Tooltip 
+                                  title={
+                                    <Box sx={{ p: 1 }}>
+                                      <Typography variant="subtitle2">{file.owner}</Typography>
+                                      <Typography variant="body2" sx={{ opacity: 0.8 }}>
+                                        Organization: {userProfiles[file.owner]?.organization || "Unknown"}
+                                      </Typography>
+                                      {userProfiles[file.owner]?.bio && (
+                                        <Typography variant="body2" sx={{ mt: 1, fontStyle: 'italic' }}>
+                                          "{userProfiles[file.owner]?.bio}"
+                                        </Typography>
+                                      )}
+                                    </Box>
+                                  }
+                                  arrow
+                                  placement="top"
+                                >
+                                  <Typography 
+                                    variant="body2" 
+                                    component="span" 
+                                    color="primary.main" 
+                                    sx={{ 
+                                      ml: 0.5, 
+                                      fontWeight: 'medium',
+                                      cursor: 'pointer',
+                                      textDecoration: 'underline',
+                                      textDecorationStyle: 'dotted',
+                                    }}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      // Could navigate to user profile or show more info
+                                    }}
+                                  >
+                                    {userProfiles[file.owner]?.fullName || file.owner.split('@')[0] || "Unknown user"}
+                                  </Typography>
+                                </Tooltip>
                               </Box>
                             ) : (
                               <Typography variant="body2" component="span">
