@@ -96,9 +96,20 @@ def register():
     data = request.json
     email = data.get('email')
     password = data.get('password')
+    fullName = data.get('fullName', '')
+    
     if email in users:
         return jsonify({'message': 'User already exists'}), 400
-    users[email] = {'password': password}
+    
+    # Add registration timestamp and other user data
+    users[email] = {
+        'password': password,
+        'fullName': fullName,
+        'createdAt': str(int(time.time())),  # Unix timestamp for registration date
+        'organization': '',
+        'bio': ''
+    }
+    
     save_data('users.json', users)
     token = jwt.encode({'email': email}, SECRET_KEY, algorithm='HS256')
     return jsonify({'token': token})

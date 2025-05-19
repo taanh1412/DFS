@@ -17,7 +17,7 @@ function App() {
           <Route path="/login" element={token ? <Navigate to="/files" /> : <Login setToken={setToken} />} />
           <Route path="/register" element={token ? <Navigate to="/files" /> : <Register setToken={setToken} />} />
           <Route path="/files" element={token ? <FileManager token={token} setToken={setToken} /> : <Navigate to="/login" />} />
-          <Route path="/profile" element={token ? <UserProfile token={token} /> : <Navigate to="/login" />} /> {/* Add this route */}
+          <Route path="/profile" element={token ? <UserProfile token={token} setToken={setToken} /> : <Navigate to="/login" />} />          
           <Route path="/" element={<Navigate to={token ? "/files" : "/login"} />} />
         </Routes>
       </Router>

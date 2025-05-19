@@ -294,9 +294,15 @@ const UserProfile = ({ token, setToken }) => {
                   {(profile?.fullName?.charAt(0) || profile?.email?.charAt(0) || '').toUpperCase()}
                 </Avatar>
 
-                <Typography variant="body2" color="textSecondary" sx={{ textAlign: 'center', mt: 1 }}>
-                  Account created on: {new Date(profile?.createdAt || Date.now()).toLocaleDateString()}
-                </Typography>
+            <Typography variant="body2" color="textSecondary" sx={{ textAlign: 'center', mt: 1 }}>
+                Account created: {profile?.createdAt 
+                ? new Date(parseInt(profile.createdAt) * 1000).toLocaleDateString(undefined, {
+                year: 'numeric',
+                 month: 'long',
+                day: 'numeric'
+            })
+            : 'Unknown date'}
+            </Typography>
 
                 <Button 
                   variant="outlined" 
